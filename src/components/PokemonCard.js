@@ -12,7 +12,7 @@ import { getColorByPokemonType } from "../utils/getColorByPokemonType";
 
 export default function PokemonCard({ pokemon }) {
   const pokemonColor = getColorByPokemonType(pokemon.type);
-  console.log(pokemonColor);
+
   const bgStyle = { backgroundColor: pokemonColor, ...styles.bgStyle };
 
   const goToPokemon = () => {};
