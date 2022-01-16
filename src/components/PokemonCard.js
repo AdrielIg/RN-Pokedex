@@ -8,17 +8,22 @@ import {
   TextComponent,
 } from "react-native";
 import { capitalize } from "lodash";
+import { useNavigation } from "@react-navigation/native";
+
 import { getColorByPokemonType } from "../utils/getColorByPokemonType";
 
 export default function PokemonCard({ pokemon }) {
+  const navigation = useNavigation();
   const pokemonColor = getColorByPokemonType(pokemon.type);
 
   const bgStyle = { backgroundColor: pokemonColor, ...styles.bgStyle };
 
-  const goToPokemon = () => {};
+  const goToPokemon = () => {
+    navigation.navigate("Pokemon", { id: pokemon.id });
+  };
 
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={goToPokemon}>
       <View style={styles.card}>
         <View style={styles.spacing}>
           <View style={bgStyle}>
