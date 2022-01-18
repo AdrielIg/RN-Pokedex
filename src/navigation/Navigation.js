@@ -38,7 +38,6 @@ export default function Navigation() {
           tabBarIcon: ({ color, size }) => (
             <Icon name="user" color={color} size={size} />
           ),
-          headerShown: false,
         }}
       />
     </Tab.Navigator>
