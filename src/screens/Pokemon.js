@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { getPokemonAPI } from "../api/pokemon";
+import Favorite from "../components/pokemon/Favorite";
 import Header from "../components/pokemon/Header";
 import Stats from "../components/pokemon/Stats";
 import Type from "../components/pokemon/Type";
+import useAuth from "../hooks/useAuth";
 
 export default function Pokemon({ route: { params }, navigation }) {
   const [pokemon, setPokemon] = useState(null);
 
+  const { auth } = useAuth();
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => auth && <Favorite id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name="arrow-left"
@@ -22,7 +25,7 @@ export default function Pokemon({ route: { params }, navigation }) {
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, pokemon]);
 
   useEffect(() => {
     (async () => {

@@ -4,7 +4,6 @@ import { capitalize } from "lodash";
 import { getColorByPokemonType } from "../../utils/getColorByPokemonType";
 
 export default function Type({ types }) {
-  console.log(types);
   return (
     <View style={styles.container}>
       {types.map((item, index) => {
