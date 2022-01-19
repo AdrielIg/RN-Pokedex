@@ -10,9 +10,13 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { user, userDetails } from "../../utils/userDB";
+import useAuth from "../../hooks/useAuth";
 
 export default function LoginForm() {
   const [error, setError] = useState("");
+  const { login } = useAuth();
+
+  console.log(useAuth());
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -24,8 +28,7 @@ export default function LoginForm() {
       if (username !== user.username || password !== user.password) {
         setError("Incorrect Credential");
       } else {
-        console.log("Correcto pa");
-        console.log(userDetails);
+        login(userDetails);
       }
     },
   });
