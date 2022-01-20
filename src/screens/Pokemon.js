@@ -12,9 +12,12 @@ export default function Pokemon({ route: { params }, navigation }) {
   const [pokemon, setPokemon] = useState(null);
 
   const { auth } = useAuth();
+
+  console.log(auth);
+
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => auth && <Favorite id={pokemon?.id} />,
+      headerRight: () => (auth ? <Favorite id={pokemon?.id} /> : null),
       headerLeft: () => (
         <Icon
           name="arrow-left"
