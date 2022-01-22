@@ -13,8 +13,6 @@ export default function Pokemon({ route: { params }, navigation }) {
 
   const { auth } = useAuth();
 
-  console.log(auth);
-
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (auth ? <Favorite id={pokemon?.id} /> : null),
