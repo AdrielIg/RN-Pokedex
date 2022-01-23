@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import { getPokemonFavorite } from "../api/favorite";
 import { getPokemonAPI } from "../api/pokemon";
 import PokemonList from "../components/PokemonList";
+import { now } from "lodash";
 
 export default function Favorite({ id }) {
   const [favorites, setFavorites] = useState(null);
