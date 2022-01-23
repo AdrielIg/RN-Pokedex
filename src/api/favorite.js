@@ -30,3 +30,13 @@ export const isPokemonSaved = async (id) => {
     throw error;
   }
 };
+
+export const removePokemon = async (id) => {
+  try {
+    const favorites = await getPokemonFavorite();
+    const newFavorites = pull(favorites, id);
+    await AsyncStorage.setItem(FAVORITE_STORAGE, JSON.stringify(newFavorites));
+  } catch (error) {
+    throw erroe;
+  }
+};
