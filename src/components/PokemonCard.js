@@ -31,6 +31,9 @@ export default function PokemonCard({ pokemon }) {
               #{`${pokemon.order}`.padStart(3, 0)}
             </Text>
             <Text style={styles.name}>{capitalize(pokemon.name)}</Text>
+            <View style={styles.bgPokemonWrapper}>
+              <View style={styles.bgPokemon}></View>
+            </View>
             <Image source={{ uri: pokemon.img }} style={styles.img} />
           </View>
         </View>
@@ -65,12 +68,31 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 15,
     padding: 10,
+    borderWidth: 1,
+  },
+  bgPokemonWrapper: {
+    position: "absolute",
+    height: "99%",
+    width: "99%",
+    right: 0,
+    bottom: 0,
+    overflow: "hidden",
+  },
+  bgPokemon: {
+    position: "absolute",
+    bottom: -30,
+    right: -20,
+    height: 120,
+    width: 120,
+    borderRadius: 100,
+    backgroundColor: "rgba(255,255,255,0.2)",
   },
   img: {
     position: "absolute",
-    bottom: 2,
-    right: 2,
+    bottom: -10,
+    right: -5,
     width: 90,
     height: 90,
+    zIndex: 500,
   },
 });

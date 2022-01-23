@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { StyleSheet, Button, View, Text } from "react-native";
+import { StyleSheet, Button, View, Text, Pressable } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { size } from "lodash";
 import useAuth from "../../hooks/useAuth";
@@ -35,7 +35,11 @@ export default function UserData() {
         <ItemMenu title="Email" text={auth.email} />
         <ItemMenu title="Total Favorites" text={`${total} Pokemons`} />
       </View>
-      <Button title="Log Out" onPress={logout} />
+      <View style={styles.buttonWrapper}>
+        <Pressable style={styles.button} onPress={logout}>
+          <Text style={styles.buttonText}>Log Out</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -74,5 +78,22 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingRight: 10,
     width: 140,
+  },
+  buttonWrapper: {
+    display: "flex",
+    alignItems: "center",
+  },
+  button: {
+    marginTop: 15,
+    width: 80,
+    padding: 9,
+    backgroundColor: "#4B90EB",
+    borderRadius: 12,
+    display: "flex",
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 15,
+    color: "#fff",
   },
 });
