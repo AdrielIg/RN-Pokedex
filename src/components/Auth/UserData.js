@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet, Button, View, Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import { size } from "lodash";
 import useAuth from "../../hooks/useAuth";
+import { getPokemonFavorite } from "../../api/favorite";
 
 export default function UserData() {
   const { auth, logout } = useAuth();
+  const [total, setTotal] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        try {
+          const response = await getPokemonFavorite();
+          setTotal(size(response));
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
@@ -16,7 +33,7 @@ export default function UserData() {
         <ItemMenu title="Nombre" text={`${auth.firstName} ${auth.lastName}`} />
         <ItemMenu title="Username" text={auth.username} />
         <ItemMenu title="Email" text={auth.email} />
-        <ItemMenu title="Total Favorites" text={`0 Pokemons`} />
+        <ItemMenu title="Total Favorites" text={`${total} Pokemons`} />
       </View>
       <Button title="Log Out" onPress={logout} />
     </View>
