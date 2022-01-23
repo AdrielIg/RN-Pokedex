@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 import { getPokemonFavorite } from "../api/favorite";
 import { getPokemonAPI } from "../api/pokemon";
 import PokemonList from "../components/PokemonList";
-import { now } from "lodash";
+import NotLogged from "../components/NotLogged";
 
 export default function Favorite({ id }) {
   const [favorites, setFavorites] = useState(null);
@@ -36,9 +36,5 @@ export default function Favorite({ id }) {
     }, [auth])
   );
 
-  return auth ? (
-    <PokemonList pokemons={favorites} />
-  ) : (
-    <Text>You need to log in</Text>
-  );
+  return auth ? <PokemonList pokemons={favorites} /> : <NotLogged />;
 }
