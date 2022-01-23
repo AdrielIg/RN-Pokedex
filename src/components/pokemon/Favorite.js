@@ -9,7 +9,7 @@ import {
 export default function Favorite({ id }) {
   const [isFavorite, setIsFavorite] = useState(undefined);
   const [reloadCheck, setReloadCheck] = useState(false);
-  console.log(isFavorite);
+
   useEffect(() => {
     (async () => {
       try {

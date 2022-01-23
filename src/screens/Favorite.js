@@ -16,7 +16,6 @@ export default function Favorite({ id }) {
       if (auth) {
         (async () => {
           const response = await getPokemonFavorite();
-          console.log("response:", response);
           const pokemonsArray = [];
 
           for await (const id of response) {
